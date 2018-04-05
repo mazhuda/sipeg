@@ -27,7 +27,7 @@
             </div><!-- /.login-logo -->
                   <div class="login-box-body">
         <p class="login-box-msg">
-          Log in to start your session
+          Silahkan login dengan akun anda
         </p>
 
         <form action="<?php echo site_url('C_login/login'); ?>" method="post">
@@ -56,7 +56,7 @@
               </div>
             </div> -->
             <div class="col-xs-offset-8 col-xs-4">
-              <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+              <button type="submit" class="btn btn-primary btn-block btn-flat">Login</button>
             </div>
           </div>
         </form>

@@ -2,7 +2,10 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class C_login extends CI_Controller {
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 	public function __construct() {
         parent::__construct();
         $this->load->model('M_login');
@@ -12,8 +15,8 @@ class C_login extends CI_Controller {
     public function index() {
         $session = $this->session->userdata('level');
         if ($session == '') {
-        $this->load->view('V_login');
-    }
+            $this->load->view('V_login');
+        }
     }
 
     //login dengan validasi inputan pada form login
@@ -23,33 +26,40 @@ class C_login extends CI_Controller {
 
         $session = $this->session->userdata('level');
         if ($session == '') {
-        $this->load->view('V_login');
+            $this->load->view('V_login');
         }
 
         if ($this->form_validation->run() == TRUE) {
-            $data = array('username' => $this->input->post('username'),
-                        'password' => ($this->input->post('password'))
-                    );
-
+            $data = array('username' => $this->input->post('username'), 'password' => ($this->input->post('password')));
             $hasil = $this->M_login->login($data);
 
             if ($hasil->num_rows() == 1) {
-            foreach ($hasil->result() as $sess) {
-                $sess_data['logged_in'] = 'Sudah Masuk';
-                $sess_data['id_user'] = $sess->id_user;
-                $sess_data['username'] = $sess->username;
-                $sess_data['level'] = $sess->level;
-                $this->session->set_userdata($sess_data);
+                foreach ($hasil->result() as $sess) {
+                    $sess_data['logged_in'] = 'Sudah Masuk';
+                    $sess_data['id_user'] = $sess->id_user;
+                    $sess_data['username'] = $sess->username;
+                    $sess_data['level'] = $sess->level;
+                    $this->session->set_userdata($sess_data);
+                }
+                if ($this->session->userdata('level')=='0') {
+                    redirect('C_beranda');
+                }
+                elseif ($this->session->userdata('level')=='1') {
+                    redirect('C_data');
+                }
             }
-            if ($this->session->userdata('level')=='0') {
-                redirect('C_beranda');
-            }
+<<<<<<< HEAD
             elseif ($this->session->userdata('level')=='1') {
                 redirect('C_beranda');
             }
         } else {
             $this->session->set_flashdata('result_login', '<br>Username atau Password yang anda masukkan salah.');
             redirect('C_login');
+=======
+            else {
+                $this->session->set_flashdata('result_login', '<br>Username atau Password yang anda masukkan salah.');
+                redirect('C_login');
+>>>>>>> master
             }
         }
     }
@@ -60,9 +70,5 @@ class C_login extends CI_Controller {
         $this->session->unset_userdata('level');
         session_destroy();
         redirect('C_login');
-        }
-
-
-
-
+    }
 }
