@@ -38,15 +38,19 @@ class C_login extends CI_Controller {
                     $sess_data['level'] = $sess->level;
                     $this->session->set_userdata($sess_data);
                 }
-                if ($this->session->userdata('level')=='0') {
+                if ($this->session->userdata('level')=='0') 
+                {
                     redirect('C_beranda');
                 }
-                elseif ($this->session->userdata('level')=='1') {
+                elseif ($this->session->userdata('level')=='1') 
+                {
                     redirect('C_beranda');
                 }
-                else {
-                $this->session->set_flashdata('result_login', '<br>Username atau Password yang anda masukkan salah.');
-                redirect('C_login');
+                else 
+                {
+                    $this->session->set_flashdata('result_login', '<br>Username atau Password yang anda masukkan salah.');
+                    redirect('C_login');
+                }
             }
         }
     }
