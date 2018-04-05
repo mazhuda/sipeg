@@ -2,12 +2,16 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class C_login extends CI_Controller {
+<<<<<<< HEAD
+
+=======
+>>>>>>> master
 	public function __construct() {
         parent::__construct();
         $this->load->model('M_login');
         $this->load->database();
     }
-
+    //index dengan session untuk mencegah bypass page
     public function index() {
         $session = $this->session->userdata('level');
         if ($session == '') {
@@ -15,6 +19,7 @@ class C_login extends CI_Controller {
         }
     }
 
+    //login dengan validasi inputan pada form login
     public function login() {
         $this->form_validation->set_rules('username', 'Username', 'required|max_length[20]');
         $this->form_validation->set_rules('password', 'Password', 'required');
@@ -43,13 +48,23 @@ class C_login extends CI_Controller {
                     redirect('C_data');
                 }
             }
+<<<<<<< HEAD
+            elseif ($this->session->userdata('level')=='1') {
+                redirect('C_beranda');
+            }
+        } else {
+            $this->session->set_flashdata('result_login', '<br>Username atau Password yang anda masukkan salah.');
+            redirect('C_login');
+=======
             else {
                 $this->session->set_flashdata('result_login', '<br>Username atau Password yang anda masukkan salah.');
                 redirect('C_login');
+>>>>>>> master
             }
         }
     }
 
+    //logout
     public function logout() {
         $this->session->unset_userdata('username');
         $this->session->unset_userdata('level');
