@@ -30,7 +30,6 @@ class C_login extends CI_Controller {
         if ($this->form_validation->run() == TRUE) {
             $data = array('username' => $this->input->post('username'), 'password' => ($this->input->post('password')));
             $hasil = $this->M_login->login($data);
-            //$cekses = count($_SESSION['level']);
 
             if ($hasil->num_rows() == 1) {
                 foreach ($hasil->result() as $sess) {
@@ -41,9 +40,6 @@ class C_login extends CI_Controller {
                     $sess_data['id_desa'] = $sess->id_desa;
                     $this->session->set_userdata($sess_data);
                 }
-                //$dapriv['cekdata'] = $this->M_login->datapriv();
-                //$dp = $this->M_login->datapriv();
-                //$cekp = $dp->id_desa;
                 if ($this->session->userdata('level')=='1') 
                 {
                     redirect('C_beranda');

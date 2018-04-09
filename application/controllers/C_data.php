@@ -35,7 +35,6 @@ class C_data extends CI_Controller {
 			$crud->display_as('id_jabatan','Jabatan')->display_as('id_desa','Desa');
 			$crud->field_type('id_jabatan','dropdown', array('1' => 'Kepala Desa', '2' => 'BPD', '3' => 'Sekertaris', '4' => 'Admin Desa', '5' => 'Kaur Pem', '6' => 'Kaur Peb', '7' => 'Kaur Kesra', '8' => 'Kaur Keu', '9' => 'Kaur Umum', '10' => 'Kepala Dusun', '11' => 'Ketua RW', '12' => 'Ketua RT'));
 			$data_ds = $this->M_dtdesa->ddesa();
-			//$crud->set_relation('id_desa','tb_desa','nama_desa');
 			$crud->field_type('id_desa','dropdown', $data_ds);
 			$crud->where('id_desa =',$this->session->userdata('id_desa'));
 			$output = $crud->render();

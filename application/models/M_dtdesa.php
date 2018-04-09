@@ -3,8 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_dtdesa extends CI_Model {
     
+    //fungsi model untuk mengambil data id_desa dan nama_desa yang digunakan pada dropdown crud
     public function ddesa() {
-        //$query = $this->db->get_where('tb_desa', $data);
         $this->db->select('id_desa, nama_desa');
         $query = $this->db->get('tb_desa');
         if ($query->num_rows() !== 0)
@@ -18,4 +18,5 @@ class M_dtdesa extends CI_Model {
         $query->free_result();
         return $data_ds;
     }
+
 }
