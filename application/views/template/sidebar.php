@@ -12,7 +12,13 @@
         <ul class="sidebar-menu">
             <li><a href="<?php echo base_url('index.php/C_beranda'); ?>"><i class="fa fa-home"></i> Beranda</a></li>
             <li><a href="<?php echo base_url('index.php/C_data'); ?>"><i class="fa fa-book"></i> Data Aparatur Desa</a></li>
-            <li><a href="<?php echo base_url('index.php/C_user'); ?>"><i class="fa fa-user"></i> Manajemen User</a></li>
+            <li>
+                <?php
+                    if ($this->session->userdata('level')=='0') {
+                        echo "<a href='".base_url('index.php/C_user')."'><i class='fa fa-user'></i> Manajemen User</a>";
+                    }
+                ?>
+            </li>
         </ul>
     </section>
     <!-- /.sidebar -->

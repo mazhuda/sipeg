@@ -48,10 +48,9 @@ class C_login extends CI_Controller {
                 {
                     redirect('C_beranda');
                 }
-                else 
-                {
-                    $this->session->set_flashdata('result_login', '<br>Username atau Password yang anda masukkan salah.');
-                    redirect('C_login');
+                else {
+                $this->session->set_flashdata('result_login', '<br>Username atau Password yang anda masukkan salah.');
+                redirect('C_login');
                 }
             }
         }

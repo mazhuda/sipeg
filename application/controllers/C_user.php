@@ -11,8 +11,8 @@ class C_user extends CI_Controller {
 
 	//crud manajemen user
 	public function index() {
-		if($this->session->userdata('level')=='0')
-		{
+		// if($this->session->userdata('level')=='0')
+		// {
 			$this->load->model('M_dtdesa');
 		    $crud = new grocery_CRUD();
 		    $crud->set_language('indonesian');
@@ -24,10 +24,10 @@ class C_user extends CI_Controller {
 		    $crud->set_subject('Data User');
 		    $output = $crud->render();
 			$this->load->view('V_user',$output);
-		}
-		else
-		{
-			echo "Maaf anda tidak memiliki hak untuk melihat data ini!";
-		}
+		// }
+		// else
+		// {
+		// 	echo "Maaf anda tidak memiliki hak untuk melihat data ini!";
+		// }
 	}
 }
