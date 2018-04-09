@@ -17,6 +17,9 @@ class C_data extends CI_Controller {
 			$crud->set_language('indonesian');
 			$crud->set_table('tb_pegawai');
 			$crud->set_subject('Data Pegawai');
+			$crud->display_as('id_jabatan','Jabatan')->display_as('id_desa','Desa');
+			$crud->set_relation('id_jabatan','tb_jabatan','nama_jabatan');
+			$crud->set_relation('id_desa','tb_desa','nama_desa');
 			$crud->unset_add();
 			$crud->unset_edit();
 			$crud->unset_delete();
