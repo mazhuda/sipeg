@@ -6,6 +6,7 @@ class C_login extends CI_Controller {
 	public function __construct() {
         parent::__construct();
         $this->load->model('M_login');
+        //$this->load->model('M_aksesdata');
         $this->load->database();
     }
     //index dengan session untuk mencegah bypass page
@@ -29,6 +30,7 @@ class C_login extends CI_Controller {
         if ($this->form_validation->run() == TRUE) {
             $data = array('username' => $this->input->post('username'), 'password' => ($this->input->post('password')));
             $hasil = $this->M_login->login($data);
+            //$cekses = count($_SESSION['level']);
 
             if ($hasil->num_rows() == 1) {
                 foreach ($hasil->result() as $sess) {
@@ -36,13 +38,17 @@ class C_login extends CI_Controller {
                     $sess_data['id_user'] = $sess->id_user;
                     $sess_data['username'] = $sess->username;
                     $sess_data['level'] = $sess->level;
+                    $sess_data['id_desa'] = $sess->id_desa;
                     $this->session->set_userdata($sess_data);
                 }
-                if ($this->session->userdata('level')=='0') 
+                //$dapriv['cekdata'] = $this->M_login->datapriv();
+                //$dp = $this->M_login->datapriv();
+                //$cekp = $dp->id_desa;
+                if ($this->session->userdata('level')=='1') 
                 {
                     redirect('C_beranda');
                 }
-                elseif ($this->session->userdata('level')=='1') 
+                elseif ($this->session->userdata('level')=='0') 
                 {
                     redirect('C_beranda');
                 }

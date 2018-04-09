@@ -8,4 +8,4 @@ class M_login extends CI_Model {
             return $query;
     }
 }
- // berikut adalah sebuah model dari controller karyawan login
+ // berikut adalah sebuah model dari controller login
