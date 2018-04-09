@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.9
--- https://www.phpmyadmin.net/
+-- version 4.5.4.1deb2ubuntu2
+-- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 05, 2018 at 05:13 PM
--- Server version: 10.1.31-MariaDB
--- PHP Version: 5.6.34
+-- Host: localhost
+-- Generation Time: Apr 09, 2018 at 02:44 PM
+-- Server version: 10.0.31-MariaDB-0ubuntu0.16.04.2
+-- PHP Version: 5.6.34-1+ubuntu16.04.1+deb.sury.org+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -214,10 +212,10 @@ INSERT INTO `tb_jabatan` (`id_jabatan`, `nama_jabatan`) VALUES
 
 CREATE TABLE `tb_pegawai` (
   `id_pegawai` int(10) NOT NULL,
+  `NIP` varchar(18) NOT NULL,
+  `Nama` varchar(20) NOT NULL,
   `id_desa` int(8) NOT NULL,
   `id_jabatan` int(8) NOT NULL,
-  `NIK` int(11) NOT NULL,
-  `Nama` varchar(20) NOT NULL,
   `Foto` varchar(25) NOT NULL,
   `Tempat_lahir` varchar(10) NOT NULL,
   `Tanggal_lahir` date NOT NULL,
@@ -229,57 +227,57 @@ CREATE TABLE `tb_pegawai` (
 -- Dumping data for table `tb_pegawai`
 --
 
-INSERT INTO `tb_pegawai` (`id_pegawai`, `id_desa`, `id_jabatan`, `NIK`, `Nama`, `Foto`, `Tempat_lahir`, `Tanggal_lahir`, `Telepon`, `Alamat`) VALUES
-(1, 0, 0, 2, 'Rebeka Goyette V', '', 'chester', '1983-02-19', 0, 'Ridges'),
-(2, 0, 0, 8, 'Molly Reichel Jr.', '', 'berg', '1984-04-18', 1, 'Walk'),
-(3, 0, 0, 9, 'Delfina Walker', '', 'town', '2014-10-17', 0, 'Field'),
-(4, 0, 0, 5, 'Ima Tremblay', '', 'furt', '1987-03-25', 21, 'Unions'),
-(5, 0, 0, 6, 'Wava Rath', '', 'view', '1976-08-25', 522, 'Motorway'),
-(6, 0, 0, 3, 'Prof. Sylvan Batz I', '', 'view', '2015-09-09', 1, 'Plains'),
-(7, 0, 0, 5, 'Brent DuBuque', '', 'burgh', '1990-11-01', 287, 'Lane'),
-(8, 0, 0, 2, 'Lacy Deckow', '', 'mouth', '1975-07-21', 135, 'Cliffs'),
-(9, 0, 0, 3, 'Monserrat Wolf', '', 'chester', '1987-10-20', 0, 'Cape'),
-(10, 0, 0, 1, 'Tommie Blick', '', 'ville', '1975-03-01', 228201, 'Fields'),
-(11, 0, 0, 6, 'Murphy Brakus', '', 'land', '2014-07-07', 915990, 'Pines'),
-(12, 0, 0, 8, 'Mr. Sylvan Sauer III', '', 'bury', '1993-06-30', 0, 'Underpass'),
-(13, 0, 0, 6, 'Ms. Alexandra Wisoky', '', 'burgh', '2008-10-28', 658566, 'Islands'),
-(14, 0, 0, 5, 'Gerda Champlin', '', 'town', '1976-08-22', 19, 'Light'),
-(15, 0, 0, 4, 'Mrs. Eleonore Kessle', '', 'side', '1990-07-08', 2147483647, 'Overpass'),
-(16, 0, 0, 9, 'William Jenkins', '', 'berg', '1993-08-19', 723, 'Expressway'),
-(17, 0, 0, 5, 'Dr. Alfonzo VonRuede', '', 'mouth', '2010-02-21', 0, 'Passage'),
-(18, 0, 0, 4, 'Talon Reichert', '', 'haven', '2000-10-14', 0, 'Canyon'),
-(19, 0, 0, 5, 'Imelda Schowalter', '', 'borough', '1985-06-09', 0, 'Terrace'),
-(20, 0, 0, 4, 'Prof. Karli Senger D', '', 'fort', '1986-08-27', 849, 'Shoal'),
-(21, 0, 0, 3, 'Leanna Yundt', '', 'ville', '1982-02-16', 1, 'Viaduct'),
-(22, 0, 0, 1, 'Kiana Wuckert', '', 'bury', '2012-09-29', 52338, 'Viaduct'),
-(23, 0, 0, 8, 'Kira Predovic', '', 'furt', '2004-10-25', 2147483647, 'Locks'),
-(24, 0, 0, 2, 'Prof. Earnest Bradtk', '', 'borough', '1978-06-16', 196, 'Drives'),
-(25, 0, 0, 9, 'Alta Upton', '', 'port', '1978-10-25', 0, 'Glens'),
-(26, 0, 0, 2, 'Miss Eryn Dicki', '', 'ton', '2008-03-30', 453354, 'Junction'),
-(27, 0, 0, 5, 'Augustus Krajcik', '', 'town', '1987-01-16', 45, 'Spring'),
-(28, 0, 0, 6, 'Kristoffer Bergstrom', '', 'side', '2014-10-12', 2147483647, 'Camp'),
-(29, 0, 0, 8, 'Pat Sauer', '', 'fort', '2003-04-12', 0, 'Trace'),
-(30, 0, 0, 1, 'Joshuah Thompson', '', 'furt', '1996-04-13', 868, 'Isle'),
-(31, 0, 0, 5, 'Dagmar Kiehn', '', 'borough', '1978-01-13', 505, 'Summit'),
-(32, 0, 0, 6, 'Keira Haag I', '', 'mouth', '1980-01-10', 0, 'Locks'),
-(33, 0, 0, 5, 'Mr. Sterling McGlynn', '', 'burgh', '1997-01-15', 63, 'Track'),
-(34, 0, 0, 1, 'Cale Farrell', '', 'furt', '1988-04-29', 964, 'Loaf'),
-(35, 0, 0, 5, 'Dr. Harley Koepp', '', 'berg', '2006-11-12', 37, 'Motorway'),
-(36, 0, 0, 9, 'Mr. Christian Bergst', '', 'furt', '1992-02-11', 1, 'Trace'),
-(37, 0, 0, 8, 'Miss Rosalind Osinsk', '', 'furt', '1998-09-23', 2147483647, 'Fields'),
-(38, 0, 0, 6, 'Parker Vandervort', '', 'view', '1983-09-14', 1, 'Squares'),
-(39, 0, 0, 1, 'Franco O\'Kon', '', 'chester', '1982-05-25', 0, 'Harbor'),
-(40, 0, 0, 3, 'Barry Schiller', '', 'berg', '1992-09-03', 0, 'Estate'),
-(41, 0, 0, 9, 'Dr. Jasmin Ortiz', '', 'port', '2004-03-23', 909, 'Passage'),
-(42, 0, 0, 2, 'Tierra Pollich', '', 'haven', '1985-04-29', 1, 'Ridge'),
-(43, 0, 0, 6, 'Bailee Huel Jr.', '', 'fort', '1981-06-22', 0, 'Road'),
-(44, 0, 0, 2, 'David Jerde V', '', 'chester', '2010-03-13', 0, 'Mills'),
-(45, 0, 0, 4, 'Marilou Heaney', '', 'fort', '1986-03-23', 832, 'Gateway'),
-(46, 0, 0, 5, 'Dr. Ernie Stiedemann', '', 'town', '1999-05-14', 52862980, 'Motorway'),
-(47, 0, 0, 8, 'Willie Gaylord', '', 'mouth', '2012-08-19', 389499, 'Trail'),
-(48, 0, 0, 4, 'Edgar Cartwright', '', 'ton', '1998-05-28', 297, 'Parks'),
-(49, 0, 0, 3, 'Osbaldo Kub', '', 'town', '2014-11-12', 391926, 'Keys'),
-(50, 0, 0, 4, 'Dr. Julian Dibbert', '', 'berg', '2010-09-13', 0, 'Walks');
+INSERT INTO `tb_pegawai` (`id_pegawai`, `NIP`, `Nama`, `id_desa`, `id_jabatan`, `Foto`, `Tempat_lahir`, `Tanggal_lahir`, `Telepon`, `Alamat`) VALUES
+(1, '312643562196272481', 'Rebeka Goyette V', 12001, 1, '', 'chester', '1983-02-19', 0, 'Ridges'),
+(2, '475259557347082341', 'Molly Reichel Jr.', 12001, 2, '', 'berg', '1984-04-18', 1, 'Walk'),
+(3, '255456482599848506', 'Delfina Walker', 12001, 3, '', 'town', '2014-10-17', 0, 'Field'),
+(4, '402675709277357646', 'Ima Tremblay', 12001, 4, '', 'furt', '1987-03-25', 21, 'Unions'),
+(5, '958361718317304185', 'Wava Rath', 12001, 5, '', 'view', '1976-08-25', 522, 'Motorway'),
+(6, '714140805205156203', 'Prof. Sylvan Batz I', 12001, 6, '', 'view', '2015-09-09', 1, 'Plains'),
+(7, '868896962378086309', 'Brent DuBuque', 12001, 7, '', 'burgh', '1990-11-01', 287, 'Lane'),
+(8, '773815465919043742', 'Lacy Deckow', 12001, 8, '', 'mouth', '1975-07-21', 135, 'Cliffs'),
+(9, '450778298251351651', 'Monserrat Wolf', 12001, 9, '', 'chester', '1987-10-20', 0, 'Cape'),
+(10, '902274486418472800', 'Tommie Blick', 12001, 10, '', 'ville', '1975-03-01', 228201, 'Fields'),
+(11, '148524299053622261', 'Murphy Brakus', 12001, 11, '', 'land', '2014-07-07', 915990, 'Pines'),
+(12, '302531923893631963', 'Mr. Sylvan Sauer III', 12001, 12, '', 'bury', '1993-06-30', 0, 'Underpass'),
+(13, '863541268038540964', 'Ms. Alexandra Wisoky', 12002, 1, '', 'burgh', '2008-10-28', 658566, 'Islands'),
+(14, '689912541022336086', 'Gerda Champlin', 12002, 2, '', 'town', '1976-08-22', 19, 'Light'),
+(15, '623254103683724932', 'Mrs. Eleonore Kessle', 12002, 3, '', 'side', '1990-07-08', 2147483647, 'Overpass'),
+(16, '805798153411920449', 'William Jenkins', 12002, 4, '', 'berg', '1993-08-19', 723, 'Expressway'),
+(17, '996609671307396843', 'Dr. Alfonzo VonRuede', 12002, 5, '', 'mouth', '2010-02-21', 0, 'Passage'),
+(18, '280730510639147416', 'Talon Reichert', 12002, 6, '', 'haven', '2000-10-14', 0, 'Canyon'),
+(19, '599377887320873648', 'Imelda Schowalter', 12002, 7, '', 'borough', '1985-06-09', 0, 'Terrace'),
+(20, '742629465643996812', 'Prof. Karli Senger D', 12002, 8, '', 'fort', '1986-08-27', 849, 'Shoal'),
+(21, '367715711225631643', 'Leanna Yundt', 12002, 9, '', 'ville', '1982-02-16', 1, 'Viaduct'),
+(22, '357100794755941765', 'Kiana Wuckert', 12002, 10, '', 'bury', '2012-09-29', 52338, 'Viaduct'),
+(23, '536571518451747092', 'Kira Predovic', 12002, 11, '', 'furt', '2004-10-25', 2147483647, 'Locks'),
+(24, '403900884225721561', 'Prof. Earnest Bradtk', 12002, 12, '', 'borough', '1978-06-16', 196, 'Drives'),
+(25, '440789319564868596', 'Alta Upton', 12003, 1, '', 'port', '1978-10-25', 0, 'Glens'),
+(26, '149649723129782759', 'Miss Eryn Dicki', 12003, 2, '', 'ton', '2008-03-30', 453354, 'Junction'),
+(27, '303941257788290809', 'Augustus Krajcik', 12003, 3, '', 'town', '1987-01-16', 45, 'Spring'),
+(28, '394802519329899445', 'Kristoffer Bergstrom', 12003, 4, '', 'side', '2014-10-12', 2147483647, 'Camp'),
+(29, '105466331747055617', 'Pat Sauer', 12003, 5, '', 'fort', '2003-04-12', 0, 'Trace'),
+(30, '621286163001170963', 'Joshuah Thompson', 12003, 6, '', 'furt', '1996-04-13', 868, 'Isle'),
+(31, '602297446483896322', 'Dagmar Kiehn', 12003, 7, '', 'borough', '1978-01-13', 505, 'Summit'),
+(32, '552057964640038508', 'Keira Haag I', 12003, 8, '', 'mouth', '1980-01-10', 0, 'Locks'),
+(33, '880567141508212911', 'Mr. Sterling McGlynn', 12003, 9, '', 'burgh', '1997-01-15', 63, 'Track'),
+(34, '879089122476988674', 'Cale Farrell', 12003, 10, '', 'furt', '1988-04-29', 964, 'Loaf'),
+(35, '882667824385021544', 'Dr. Harley Koepp', 12003, 11, '', 'berg', '2006-11-12', 37, 'Motorway'),
+(36, '628209778156039592', 'Mr. Christian Bergst', 12003, 12, '', 'furt', '1992-02-11', 1, 'Trace'),
+(37, '599961252387488011', 'Miss Rosalind Osinsk', 12004, 1, '', 'furt', '1998-09-23', 2147483647, 'Fields'),
+(38, '501217252903491633', 'Parker Vandervort', 12004, 2, '', 'view', '1983-09-14', 1, 'Squares'),
+(39, '942390402233587171', 'Franco O\'Kon', 12004, 3, '', 'chester', '1982-05-25', 0, 'Harbor'),
+(40, '199641555297717570', 'Barry Schiller', 12004, 4, '', 'berg', '1992-09-03', 0, 'Estate'),
+(41, '268876539703963338', 'Dr. Jasmin Ortiz', 12004, 5, '', 'port', '2004-03-23', 909, 'Passage'),
+(42, '885061943049382271', 'Tierra Pollich', 12004, 6, '', 'haven', '1985-04-29', 1, 'Ridge'),
+(43, '104009181399511564', 'Bailee Huel Jr.', 12004, 7, '', 'fort', '1981-06-22', 0, 'Road'),
+(44, '221581344371129172', 'David Jerde V', 12004, 8, '', 'chester', '2010-03-13', 0, 'Mills'),
+(45, '200992119715542415', 'Marilou Heaney', 12004, 9, '', 'fort', '1986-03-23', 832, 'Gateway'),
+(46, '254457293444294312', 'Dr. Ernie Stiedemann', 12004, 10, '', 'town', '1999-05-14', 52862980, 'Motorway'),
+(47, '192902546525573159', 'Willie Gaylord', 12004, 11, '', 'mouth', '2012-08-19', 389499, 'Trail'),
+(48, '199463100613393148', 'Edgar Cartwright', 12004, 12, '', 'ton', '1998-05-28', 297, 'Parks'),
+(49, '136140506538666456', 'Osbaldo Kub', 12005, 1, '', 'town', '2014-11-12', 391926, 'Keys'),
+(50, '110983872256109268', 'Dr. Julian Dibbert', 12005, 2, '', 'berg', '2010-09-13', 0, 'Walks');
 
 -- --------------------------------------------------------
 
@@ -289,19 +287,23 @@ INSERT INTO `tb_pegawai` (`id_pegawai`, `id_desa`, `id_jabatan`, `NIK`, `Nama`, 
 
 CREATE TABLE `tb_user` (
   `id_user` varchar(8) NOT NULL,
-  `NIK` varchar(11) NOT NULL,
+  `NIP` varchar(18) NOT NULL,
   `username` varchar(10) NOT NULL,
   `password` varchar(10) NOT NULL,
-  `level` int(11) NOT NULL
+  `level` int(11) NOT NULL,
+  `id_desa` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tb_user`
 --
 
-INSERT INTO `tb_user` (`id_user`, `NIK`, `username`, `password`, `level`) VALUES
-('001', '', 'admin', 'admin', 0),
-('002', '', 'admindes1', '1', 1);
+INSERT INTO `tb_user` (`id_user`, `NIP`, `username`, `password`, `level`, `id_desa`) VALUES
+('001', '0', 'admin', 'admin', 0, '0'),
+('002', '402675709277357646', 'ades1', '1', 1, '12001'),
+('003', '805798153411920449', 'ades2', '1', 1, '12002'),
+('004', '394802519329899445', 'ades3', '1', 1, '12003'),
+('005', '199641555297717570', 'ades4', '1', 1, '12004');
 
 --
 -- Indexes for dumped tables
@@ -340,8 +342,6 @@ ALTER TABLE `tb_user`
 --
 ALTER TABLE `tb_pegawai`
   MODIFY `id_pegawai` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
-COMMIT;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
