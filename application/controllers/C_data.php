@@ -20,6 +20,8 @@ class C_data extends CI_Controller {
 			$crud->display_as('id_jabatan','Jabatan')->display_as('id_desa','Desa');
 			$crud->set_relation('id_jabatan','tb_jabatan','nama_jabatan');
 			$crud->set_relation('id_desa','tb_desa','nama_desa');
+			$crud->columns(array('NIP','Nama','id_desa','id_jabatan','Tempat_lahir','Tanggal_lahir','Telepon','Alamat'));
+			$crud->set_field_upload('Foto','assets/foto/');
 			$crud->unset_add();
 			$crud->unset_edit();
 			$crud->unset_delete();
