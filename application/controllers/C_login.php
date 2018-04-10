@@ -39,6 +39,7 @@ class C_login extends CI_Controller {
                 foreach ($hasil->result() as $sess) {
                     $sess_data['logged_in'] = 'Sudah Masuk';
                     $sess_data['id_user'] = $sess->id_user;
+                    $sess_data['NIP'] = $sess->NIP;
                     $sess_data['username'] = $sess->username;
                     $sess_data['level'] = $sess->level;
                     $sess_data['id_desa'] = $sess->id_desa;

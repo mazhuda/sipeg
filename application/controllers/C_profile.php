@@ -12,6 +12,15 @@ class C_profile extends CI_Controller {
 
 	//index
 	public function index() {
-		$this->load->view('V_profile');
+		$crud = new grocery_CRUD();
+		$crud->set_language('indonesian');
+		$crud->set_table('tb_user');
+		$crud->set_relation('NIP','tb_pegawai','NIP');
+		$crud->where('NIP =',$this->session->userdata('NIP'));
+		$crud->unset_add();
+		$crud->unset_edit();
+		$crud->unset_delete();
+		$output = $crud->render();
+		$this->load->view('V_profile', $output);
 	}
 }
