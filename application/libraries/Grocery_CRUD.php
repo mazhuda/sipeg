@@ -2627,14 +2627,50 @@ class grocery_CRUD_Layout extends grocery_CRUD_Model_Driver
 		return $this->get_readonly_input($field_info, $value);
 	}
 
-	protected function get_upload_file_readonly_input($field_info,$value)
+	/*protected function get_upload_file_readonly_input($field_info,$value)
 	{
 		$file = $file_url = base_url().$field_info->extras->upload_path.'/'.$value;
 
 		$value = !empty($value) ? '<a href="'.$file.'" target="_blank">'.$value.'</a>' : '';
 
 		return $this->get_readonly_input($field_info, $value);
-	}
+	}*/
+	protected function get_upload_file_readonly_input($field_info,$value)
+	{
+		$file = $file_url = base_url().$field_info->extras->upload_path.'/'.$value;
+ 
+			if(empty($value))
+				{
+					$value = "";
+				}
+				else
+				{
+					$is_image = !empty($value) &&
+					( substr($value,-4) == '.jpg'
+							|| substr($value,-4) == '.png'
+							|| substr($value,-5) == '.jpeg'
+							|| substr($value,-4) == '.gif'
+							|| substr($value,-5) == '.tiff')
+							? true : false;
+ 
+					$file_url = base_url().$field_info->extras->upload_path."/$value";
+ 
+					$file_url_anchor = '<a href="'.$file_url.'"';
+					if($is_image)
+					{
+						$file_url_anchor .= ' class="image-thumbnail"><img src="'.$file_url.'" height="150px">';
+					}
+					else
+					{
+						$file_url_anchor .= ' target="_blank">'.$this->character_limiter($value,$this->character_limiter,'...',true);
+					}
+					$file_url_anchor .= '</a>';
+ 
+					$value = $file_url_anchor;
+				}
+    return $this->get_readonly_input($field_info, $value);
+    }
+
 
 	protected function get_relation_n_n_input($field_info_type, $selected_values)
 	{
