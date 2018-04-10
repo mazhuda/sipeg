@@ -20,8 +20,8 @@ class C_user extends CI_Controller {
 		    $crud->columns(array('NIP','username','password','level','id_desa'));
 		    $crud->field_type('level','dropdown', array('0' => 'Superuser', '1' => 'Admin Desa'));
 		    $crud->change_field_type('password','password');
-			$data_kec = $this->M_dtdesa->dkecamatan();
-			$crud->field_type('id_desa','dropdown', $data_kec);
+			$data_ds = $this->M_dtdesa->ddesa();
+			$crud->field_type('id_desa','dropdown', $data_ds);
 			$crud->field_type('id_user','invisible');
 		    $crud->set_subject('Data User');
 		    $crud->callback_after_insert(array($this, 'log_user_after_insert'));
