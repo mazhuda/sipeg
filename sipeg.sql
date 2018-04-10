@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.4.1deb2ubuntu2
+-- version 4.2.11
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Apr 09, 2018 at 02:44 PM
--- Server version: 10.0.31-MariaDB-0ubuntu0.16.04.2
--- PHP Version: 5.6.34-1+ubuntu16.04.1+deb.sury.org+1
+-- Host: 127.0.0.1
+-- Generation Time: Apr 10, 2018 at 05:52 AM
+-- Server version: 5.6.21
+-- PHP Version: 5.6.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `sipeg`
@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `tb_desa`
 --
 
-CREATE TABLE `tb_desa` (
+CREATE TABLE IF NOT EXISTS `tb_desa` (
   `id_desa` int(8) NOT NULL,
   `nama_desa` varchar(20) NOT NULL,
   `id_kecamatan` int(8) NOT NULL,
@@ -181,7 +181,7 @@ INSERT INTO `tb_desa` (`id_desa`, `nama_desa`, `id_kecamatan`, `nama_kecamatan`)
 -- Table structure for table `tb_jabatan`
 --
 
-CREATE TABLE `tb_jabatan` (
+CREATE TABLE IF NOT EXISTS `tb_jabatan` (
   `id_jabatan` varchar(8) NOT NULL,
   `nama_jabatan` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -210,8 +210,8 @@ INSERT INTO `tb_jabatan` (`id_jabatan`, `nama_jabatan`) VALUES
 -- Table structure for table `tb_pegawai`
 --
 
-CREATE TABLE `tb_pegawai` (
-  `id_pegawai` int(10) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tb_pegawai` (
+`id_pegawai` int(10) NOT NULL,
   `NIP` varchar(18) NOT NULL,
   `Nama` varchar(20) NOT NULL,
   `id_desa` int(8) NOT NULL,
@@ -221,7 +221,7 @@ CREATE TABLE `tb_pegawai` (
   `Tanggal_lahir` date NOT NULL,
   `Telepon` int(11) NOT NULL,
   `Alamat` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tb_pegawai`
@@ -266,7 +266,7 @@ INSERT INTO `tb_pegawai` (`id_pegawai`, `NIP`, `Nama`, `id_desa`, `id_jabatan`, 
 (36, '628209778156039592', 'Mr. Christian Bergst', 12003, 12, '', 'furt', '1992-02-11', 1, 'Trace'),
 (37, '599961252387488011', 'Miss Rosalind Osinsk', 12004, 1, '', 'furt', '1998-09-23', 2147483647, 'Fields'),
 (38, '501217252903491633', 'Parker Vandervort', 12004, 2, '', 'view', '1983-09-14', 1, 'Squares'),
-(39, '942390402233587171', 'Franco O\'Kon', 12004, 3, '', 'chester', '1982-05-25', 0, 'Harbor'),
+(39, '942390402233587171', 'Franco O''Kon', 12004, 3, '', 'chester', '1982-05-25', 0, 'Harbor'),
 (40, '199641555297717570', 'Barry Schiller', 12004, 4, '', 'berg', '1992-09-03', 0, 'Estate'),
 (41, '268876539703963338', 'Dr. Jasmin Ortiz', 12004, 5, '', 'port', '2004-03-23', 909, 'Passage'),
 (42, '885061943049382271', 'Tierra Pollich', 12004, 6, '', 'haven', '1985-04-29', 1, 'Ridge'),
@@ -285,25 +285,26 @@ INSERT INTO `tb_pegawai` (`id_pegawai`, `NIP`, `Nama`, `id_desa`, `id_jabatan`, 
 -- Table structure for table `tb_user`
 --
 
-CREATE TABLE `tb_user` (
-  `id_user` varchar(8) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tb_user` (
+`id_user` int(3) unsigned zerofill NOT NULL,
   `NIP` varchar(18) NOT NULL,
   `username` varchar(10) NOT NULL,
-  `password` varchar(10) NOT NULL,
+  `password` varchar(32) NOT NULL,
   `level` int(11) NOT NULL,
   `id_desa` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tb_user`
 --
 
 INSERT INTO `tb_user` (`id_user`, `NIP`, `username`, `password`, `level`, `id_desa`) VALUES
-('001', '0', 'admin', 'admin', 0, '0'),
-('002', '402675709277357646', 'ades1', '1', 1, '12001'),
-('003', '805798153411920449', 'ades2', '1', 1, '12002'),
-('004', '394802519329899445', 'ades3', '1', 1, '12003'),
-('005', '199641555297717570', 'ades4', '1', 1, '12004');
+(001, '0', 'admin', '21232f297a57a5a743894a0e4a801fc3', 0, '0'),
+(002, '402675709277357646', 'ades1', 'c4ca4238a0b923820dcc509a6f75849b', 1, '12001'),
+(003, '805798153411920449', 'ades2', 'c4ca4238a0b923820dcc509a6f75849b', 1, '12002'),
+(004, '394802519329899445', 'ades3', 'c4ca4238a0b923820dcc509a6f75849b', 1, '12003'),
+(005, '199641555297717570', 'ades4', 'c4ca4238a0b923820dcc509a6f75849b', 1, '12004'),
+(006, '654653415415435154', 'ades6', 'OVSIF/N+nloEcAgNYI0HTExuVSJBwILL', 1, '22001');
 
 --
 -- Indexes for dumped tables
@@ -313,25 +314,25 @@ INSERT INTO `tb_user` (`id_user`, `NIP`, `username`, `password`, `level`, `id_de
 -- Indexes for table `tb_desa`
 --
 ALTER TABLE `tb_desa`
-  ADD PRIMARY KEY (`id_desa`);
+ ADD PRIMARY KEY (`id_desa`);
 
 --
 -- Indexes for table `tb_jabatan`
 --
 ALTER TABLE `tb_jabatan`
-  ADD PRIMARY KEY (`id_jabatan`);
+ ADD PRIMARY KEY (`id_jabatan`);
 
 --
 -- Indexes for table `tb_pegawai`
 --
 ALTER TABLE `tb_pegawai`
-  ADD PRIMARY KEY (`id_pegawai`);
+ ADD PRIMARY KEY (`id_pegawai`);
 
 --
 -- Indexes for table `tb_user`
 --
 ALTER TABLE `tb_user`
-  ADD PRIMARY KEY (`id_user`);
+ ADD PRIMARY KEY (`id_user`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -341,7 +342,12 @@ ALTER TABLE `tb_user`
 -- AUTO_INCREMENT for table `tb_pegawai`
 --
 ALTER TABLE `tb_pegawai`
-  MODIFY `id_pegawai` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+MODIFY `id_pegawai` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=51;
+--
+-- AUTO_INCREMENT for table `tb_user`
+--
+ALTER TABLE `tb_user`
+MODIFY `id_user` int(3) unsigned zerofill NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
