@@ -18,10 +18,17 @@ class C_user extends CI_Controller {
 		    $crud->set_language('indonesian');
 		    $crud->set_table('tb_user');
 		    $crud->field_type('level','dropdown', array('0' => 'Superuser', '1' => 'Admin Desa'));
-		    $crud->field_type('password','password');
+		    $crud->change_field_type('password','password');
 		    $data_ds = $this->M_dtdesa->ddesa();
 			$crud->field_type('id_desa','dropdown', $data_ds);
+			$crud->field_type('id_user','invisible');
 		    $crud->set_subject('Data User');
+		    $crud->callback_after_insert(array($this, 'log_user_after_insert'));
+			$crud->callback_after_update(array($this, 'log_user_after_update'));
+		    $crud->callback_before_insert(array($this,'encrypt_password_callback'));
+ 			$crud->callback_before_update(array($this,'encrypt_password_callback'));
+	  
+  			$crud->callback_edit_field('password',array($this,'decrypt_password_callback'));
 		    $output = $crud->render();
 			$this->load->view('V_user',$output);
 		// }
@@ -30,4 +37,25 @@ class C_user extends CI_Controller {
 		// 	echo "Maaf anda tidak memiliki hak untuk melihat data ini!";
 		// }
 	}
+
+	function encrypt_password_callback($post_array, $primary_key = null)
+	{
+ 			$this->load->library('encrypt');
+  			$key = 'super-secret-key';
+ 			$post_array['password'] = $this->encrypt->encode($post_array['password'], $key);
+  				return $post_array;
+	}
+
+	function decrypt_password_callback($value)
+	{
+ 			$this->load->library('encrypt');
+  			$key = 'super-secret-key';
+  			$decrypted_password = $this->encrypt->decode($value, $key);
+ 		 	return "<input type='password' name='password' value='$decrypted_password' />";
+	}
+	function prepend_callback($post_array) {
+			$post_array['id_user'] =  '001' . $post_array['id_user'];
+ 			return $post_array;
+} 
+
 }

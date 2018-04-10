@@ -19,6 +19,10 @@ class C_login extends CI_Controller {
 
     //login dengan validasi inputan pada form login
     public function login() {
+
+        $username=$this->input->post("username");
+        $password=$this->input->post("password");
+        //$this->load->model('Mlogin');
         $this->form_validation->set_rules('username', 'Username', 'required|max_length[20]');
         $this->form_validation->set_rules('password', 'Password', 'required');
 
@@ -28,9 +32,9 @@ class C_login extends CI_Controller {
         }
 
         if ($this->form_validation->run() == TRUE) {
-            $data = array('username' => $this->input->post('username'), 'password' => ($this->input->post('password')));
+           $data=" username = ".$this->db->escape($username)."  AND password ='".md5($password)."' ";
             $hasil = $this->M_login->login($data);
-
+  
             if ($hasil->num_rows() == 1) {
                 foreach ($hasil->result() as $sess) {
                     $sess_data['logged_in'] = 'Sudah Masuk';
