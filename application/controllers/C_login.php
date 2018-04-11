@@ -32,7 +32,10 @@ class C_login extends CI_Controller {
         }
 
         if ($this->form_validation->run() == TRUE) {
-           $data=" username = ".$this->db->escape($username)."  AND password ='".md5($password)."' ";
+            $data=  array(
+            'username' => $username,
+            'password' => md5($password)
+            );
             $hasil = $this->M_login->login($data);
   
             if ($hasil->num_rows() == 1) {
