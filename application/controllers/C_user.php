@@ -29,6 +29,7 @@ class C_user extends CI_Controller {
 		 //    $crud->callback_before_insert(array($this,'encrypt_password_callback'));
  			$crud->callback_before_insert(array($this,'encrypt_password'));
   	// 		$crud->callback_edit_field('password',array($this,'decrypt_password_callback'));
+ 			$crud->unset_clone();
 		    $output = $crud->render();
 			$this->load->view('V_user',$output);
 		}

@@ -7,6 +7,7 @@ class M_dtdesa extends CI_Model {
     public function ddesa() {
         $this->db->select('id_desa, nama_desa, id_kecamatan, nama_kecamatan');
         $query = $this->db->get('tb_desa');
+        
         if ($query->num_rows() !== 0)
         {
             $data_ds = array();
@@ -18,15 +19,22 @@ class M_dtdesa extends CI_Model {
         $query->free_result();
         return $data_ds;
     }
-    
-    //fungsi model untuk read only data id_desa dan nama_desa
-    public function rodesa() {
+
+    //fungsi model untuk mengambil data id_desa dan nama_desa tiap desa
+    public function tdesa() {
         $this->db->select('id_desa, nama_desa, id_kecamatan, nama_kecamatan');
+        $this->db->where('id_desa',$this->session->userdata('id_desa'));
         $query = $this->db->get('tb_desa');
-        if ($query->num_rows() !== 0) {
-                $data_rods[$row['id_desa']] = $row['nama_desa'].', '.$row['nama_kecamatan'];
+        
+        if ($query->num_rows() !== 0)
+        {
+            $data_tds = array();
+            foreach ($query->result_array() as $row)
+            {
+                $data_tds[$row['id_desa']] = $row['nama_desa'].', '.$row['nama_kecamatan'];
+            }
         }
         $query->free_result();
-        return $data_rods;
+        return $data_tds;
     }
 }
