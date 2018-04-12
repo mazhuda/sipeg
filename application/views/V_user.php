@@ -10,7 +10,6 @@ foreach($css_files as $file): ?>
 <?php endforeach; ?>
 
 <?php
-$this->load->view('template/topbar');
 $this->load->view('template/sidebar');
 ?>
 <!-- Content Header (Page header) -->

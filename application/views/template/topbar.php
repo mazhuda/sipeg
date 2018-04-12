@@ -20,7 +20,7 @@
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="<?php echo base_url('assets/foto/avatar.png') ?>" class="user-image" alt="User Image"/>
-                                <span class="hidden-xs"><?php echo $this->session->userdata("username") ?></span>
+                                <span class="hidden-xs"><?php echo $this->session->userdata('username');echo (':');echo $data_nam->nama_desa; ?></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->

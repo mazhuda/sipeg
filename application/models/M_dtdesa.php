@@ -37,4 +37,12 @@ class M_dtdesa extends CI_Model {
         $query->free_result();
         return $data_tds;
     }
+
+    public function get_nmdes()
+    {
+        $this->db->select('nama_desa');
+        $this->db->from('tb_desa');
+        $this->db->where('id_desa', $this->session->userdata("id_desa"));
+        return $this->db->get()->row();
+    }
 }

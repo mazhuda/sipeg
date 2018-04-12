@@ -4,6 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class C_user extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
+		$this->load->model('M_dtdesa');
+   		$this->load->helper('array');
 		if ($this->session->userdata('level')=="") {
 			redirect('C_login');
 		}
@@ -13,7 +15,6 @@ class C_user extends CI_Controller {
 	public function index() {
 		if($this->session->userdata('level')=='0')
 		{
-			$this->load->model('M_dtdesa');
 		    $crud = new grocery_CRUD();
 		    $crud->set_language('indonesian');
 		    $crud->set_table('tb_user');
@@ -24,11 +25,10 @@ class C_user extends CI_Controller {
 			$crud->field_type('id_desa','dropdown', $data_ds);
 			$crud->field_type('id_user','invisible');
 		    $crud->set_subject('Data User');
-		 //    $crud->callback_after_insert(array($this, 'log_user_after_insert'));
-			// $crud->callback_after_update(array($this, 'log_user_after_update'));
-		 //    $crud->callback_before_insert(array($this,'encrypt_password_callback'));
  			$crud->callback_before_insert(array($this,'encrypt_password'));
-  	// 		$crud->callback_edit_field('password',array($this,'decrypt_password_callback'));
+ 			$crud->callback_before_update(array($this,'encrypt_password'));
+  	 		//$crud->callback_edit_field('password',array($this,'encrypt_password'));
+  	 		$crud->set_rules('NIP','NIP','is_unique[tb_user.NIP]');
  			$crud->unset_clone();
 		    $output = $crud->render();
 			$this->load->view('V_user',$output);
@@ -36,7 +36,12 @@ class C_user extends CI_Controller {
 		else
 		{
 		 	redirect('C_beranda');
+		 	$obdes = $this->M_dtdesa->get_nmdes();
+	    	$data['data_nam'] = $obdes;
+	    	$this->load->view('template/topbar', $data);
 		}
+
+
 	}
 		
 	function encrypt_password($post_array, $primary_key = null)
