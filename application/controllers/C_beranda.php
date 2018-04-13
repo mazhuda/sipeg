@@ -16,12 +16,14 @@ class C_beranda extends CI_Controller {
     if($this->session->userdata('level')=='1'){
       $data['username'] = $this->session->userdata('username');
       $obdes = $this->M_dtdesa->get_nmdes();
-      $data['data_nam'] = $obdes;
+      $data['data_namdes'] = $obdes;
+      $obpeg = $this->M_dtdesa->get_nmpeg();
+      $data['data_nampeg'] = $obpeg;
       $this->load->view('V_beranda', $data);
     }
     else
     {
-      $this->load->view('V_beranda', $data);
+      $this->load->view('V_beranda');
     }
 		
 	}

@@ -20,15 +20,51 @@
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="<?php echo base_url('assets/foto/avatar.png') ?>" class="user-image" alt="User Image"/>
-                                <span class="hidden-xs"><?php echo $this->session->userdata('username');echo (':');echo $data_nam->nama_desa; ?></span>
+                                <span class="hidden-xs">
+                                    <?php
+                                        if ($this->session->userdata('level')=='0') {
+                                            echo "Admin";
+                                        }
+                                        elseif ($this->session->userdata('level')=='1') {
+                                            echo $data_namdes->nama_desa;
+                                        }
+                                        // else {
+                                        //     redirect('C_login');
+                                        // }
+                                    ?>
+                                </span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header">
                                     <img src="<?php echo base_url('assets/foto/avatar.png') ?>" class="img-circle" alt="User Image" />
                                     <p>
-                                        <?php echo $this->session->userdata("username") ?>
-                                        <small><?php echo $this->session->userdata("id_desa") ?></small>
+                                            <?php
+                                                if ($this->session->userdata('level')=='0') {
+                                                    echo "Admin";
+                                                }
+                                                elseif ($this->session->userdata('level')=='1') {
+                                                    echo $data_nampeg->nama;
+                                                }
+                                                // else {
+                                                //     redirect('C_login');
+                                                // }
+                                            ?>
+                                        <small>
+                                            <?php
+                                                if ($this->session->userdata('level')=='0') {
+                                                    echo "Kabupaten Situbondo";
+                                                }
+                                                elseif ($this->session->userdata('level')=='1') {
+                                                    echo $data_namdes->nama_desa;
+                                                    echo ', ';
+                                                    echo $data_namdes->nama_kecamatan;
+                                                }
+                                                // else {
+                                                //     redirect('C_login');
+                                                // }
+                                            ?>
+                                        </small>
                                     </p>
                                 </li>
                                 <!-- Menu Footer-->

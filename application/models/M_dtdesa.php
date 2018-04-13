@@ -40,9 +40,17 @@ class M_dtdesa extends CI_Model {
 
     public function get_nmdes()
     {
-        $this->db->select('nama_desa');
+        $this->db->select('nama_desa, nama_kecamatan');
         $this->db->from('tb_desa');
         $this->db->where('id_desa', $this->session->userdata("id_desa"));
+        return $this->db->get()->row();
+    }
+
+    public function get_nmpeg()
+    {
+        $this->db->select('nama');
+        $this->db->from('tb_pegawai');
+        $this->db->where('NIP', $this->session->userdata("NIP"));
         return $this->db->get()->row();
     }
 }

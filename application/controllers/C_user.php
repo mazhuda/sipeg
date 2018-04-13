@@ -31,13 +31,19 @@ class C_user extends CI_Controller {
   	 		$crud->set_rules('NIP','NIP','is_unique[tb_user.NIP]');
  			$crud->unset_clone();
 		    $output = $crud->render();
+		    $obdes = $this->M_dtdesa->get_nmdes();
+      		$data['data_namdes'] = $obdes;
+      		$obpeg = $this->M_dtdesa->get_nmpeg();
+      		$data['data_nampeg'] = $obpeg;
 			$this->load->view('V_user',$output);
 		}
 		else
 		{
 		 	redirect('C_beranda');
-		 	$obdes = $this->M_dtdesa->get_nmdes();
-	    	$data['data_nam'] = $obdes;
+      		$obdes = $this->M_dtdesa->get_nmdes();
+      		$data['data_namdes'] = $obdes;
+      		$obpeg = $this->M_dtdesa->get_nmpeg();
+      		$data['data_nampeg'] = $obpeg;
 	    	$this->load->view('template/topbar', $data);
 		}
 

@@ -28,6 +28,10 @@ class C_data extends CI_Controller {
 			$crud->unset_edit();
 			$crud->unset_delete();
 			$output = $crud->render();
+			$obdes = $this->M_dtdesa->get_nmdes();
+      		$data['data_namdes'] = $obdes;
+      		$obpeg = $this->M_dtdesa->get_nmpeg();
+      		$data['data_nampeg'] = $obpeg;
 			$this->load->view('V_data',$output);
 		}
 		else
@@ -48,13 +52,12 @@ class C_data extends CI_Controller {
 			$crud->where('id_desa',$this->session->userdata('id_desa'));
 			$crud->unset_clone();
 			$output = $crud->render();
-			$obdes = $this->M_dtdesa->get_nmdes();
-	    	$data['data_nam'] = $obdes;
+      		$obdes = $this->M_dtdesa->get_nmdes();
+      		$data['data_namdes'] = $obdes;
+      		$obpeg = $this->M_dtdesa->get_nmpeg();
+      		$data['data_nampeg'] = $obpeg;
 	    	$this->load->view('template/topbar', $data);
 			$this->load->view('V_data',$output);
 		}
-		$obdes = $this->M_dtdesa->get_nmdes();
-    	$data['data_nam'] = $obdes;
-    	$this->load->view('template/topbar', $data);
 	}
 }
