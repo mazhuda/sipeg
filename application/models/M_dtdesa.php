@@ -53,4 +53,20 @@ class M_dtdesa extends CI_Model {
         $this->db->where('NIP', $this->session->userdata("NIP"));
         return $this->db->get()->row();
     }
+
+    public function get_nip() {
+        $this->db->select('id_pegawai, id_jabatan, NIP');
+        $this->db->where('id_jabatan','4');
+        $query = $this->db->get('tb_pegawai');
+        if ($query->num_rows() !== 0)
+        {
+            $data_nip = array();
+            foreach ($query->result_array() as $row)
+            {
+                $data_nip[$row['NIP']] = $row['NIP'];
+            }
+        }
+        $query->free_result();
+        return $data_nip;
+    }
 }

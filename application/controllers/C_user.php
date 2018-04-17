@@ -22,13 +22,15 @@ class C_user extends CI_Controller {
 		    $crud->field_type('level','dropdown', array('0' => 'Superuser', '1' => 'Admin Desa'));
 		    $crud->field_type('password','password');
 			$data_ds = $this->M_dtdesa->ddesa();
+			$data_nip = $this->M_dtdesa->get_nip();
+			$crud->field_type('NIP','dropdown',$data_nip);
 			$crud->field_type('id_desa','dropdown', $data_ds);
 			$crud->field_type('id_user','invisible');
 		    $crud->set_subject('Data User');
  			$crud->callback_before_insert(array($this,'encrypt_password'));
  			$crud->callback_before_update(array($this,'encrypt_password'));
   	 		//$crud->callback_edit_field('password',array($this,'encrypt_password'));
-  	 		//$crud->set_rules('NIP','NIP','is_unique[tb_user.NIP]');
+  	 		$crud->set_rules('NIP','NIP','callback_NIP_check');
  			$crud->unset_clone();
 		    $output = $crud->render();
 		    $obdes = $this->M_dtdesa->get_nmdes();
