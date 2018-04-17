@@ -13,9 +13,9 @@ class C_user extends CI_Controller {
 
 	//crud manajemen user
 	public function index($operation = null) {
-		if($this->session->userdata('level')=='0')
-		{
+		if($this->session->userdata('level')=='0') {
 		    $crud = new grocery_CRUD();
+			$this->load->model('M_dtdesa');
 		    $crud->set_language('indonesian');
 		    $crud->set_table('tb_user');
 		    $crud->columns(array('NIP','username','password','level','id_desa'));
@@ -32,12 +32,10 @@ class C_user extends CI_Controller {
   	 		//$crud->callback_edit_field('password',array($this,'encrypt_password'));
   	 		//$crud->set_rules('NIP','NIP','callback_NIP_check');
   	 		//$this->grocery_crud->
-			if( $operation == 'insert_validation' || $operation == 'insert')
-			{
+			if( $operation == 'insert_validation' || $operation == 'insert') {
 				$this->grocery_crud->set_rules('NIP', 'NIP','is_unique[tb_user.NIP]');
 			}
-			else
-			{
+			else {
 
 			}
 			//$this->grocery_crud->
@@ -47,16 +45,16 @@ class C_user extends CI_Controller {
       		$data['data_namdes'] = $obdes;
       		$obpeg = $this->M_dtdesa->get_nmpeg();
       		$data['data_nampeg'] = $obpeg;
+			$this->load->view('admire/topbar', $data);
 			$this->load->view('V_user',$output);
 		}
-		else
-		{
+		else {
 		 	redirect('C_beranda');
-      		$obdes = $this->M_dtdesa->get_nmdes();
-      		$data['data_namdes'] = $obdes;
-      		$obpeg = $this->M_dtdesa->get_nmpeg();
-      		$data['data_nampeg'] = $obpeg;
-	    	$this->load->view('template/topbar', $data);
+      // 		$obdes = $this->M_dtdesa->get_nmdes();
+      // 		$data['data_namdes'] = $obdes;
+      // 		$obpeg = $this->M_dtdesa->get_nmpeg();
+      // 		$data['data_nampeg'] = $obpeg;
+	    	// $this->load->view('template/topbar', $data);
 		}
 
 

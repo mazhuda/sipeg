@@ -9,7 +9,7 @@ foreach($css_files as $file): ?>
 <?php endforeach; ?>
 
 <?php
-$this->load->view('admire/topbar');
+//$this->load->view('admire/topbar');
 $this->load->view('admire/sidebar');
 ?>
 <!--tambahkan custom css disini-->

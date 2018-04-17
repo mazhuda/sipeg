@@ -41,6 +41,7 @@ class C_data extends CI_Controller {
 		elseif ($this->session->userdata('level')=='0')
 		{
 			$crud = new grocery_CRUD();
+			$this->load->model('M_dtdesa');
 			$crud->set_language('indonesian');
 			$crud->set_table('tb_pegawai');
 			$crud->set_subject('Data Pegawai');
