@@ -34,14 +34,17 @@ $this->load->view('admire/sidebar');
             <!-- /.outer -->
         </div>
 
-    <?php foreach($js_files as $file): ?>
-        <script src="<?php echo $file; ?>"></script>
-    <?php endforeach; ?>
+    </div>
+    <!-- /#content -->
 
-<?php 
-$this->load->view('admire/js');
-?>
-<!--tambahkan custom js disini-->
+</div>
+<!-- /#wrap -->
+
+<script src="<?php echo base_url('assets/admire/js/components.js') ?>" type="text/javascript"></script>
+<?php foreach($js_files as $file): ?>
+    <script src="<?php echo $file; ?>"></script>
+<?php endforeach; ?>
+<script src="<?php echo base_url('assets/admire/js/custom.js') ?>" type="text/javascript"></script>
 
 <?php
 $this->load->view('admire/foot');
