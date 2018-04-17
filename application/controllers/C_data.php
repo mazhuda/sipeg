@@ -13,28 +13,7 @@ class C_data extends CI_Controller {
 
 	//index dengan crud data kepegawaian
 	public function index() {
-		if ($this->session->userdata('level')=='0')
-		{
-			$crud = new grocery_CRUD();
-			$crud->set_language('indonesian');
-			$crud->set_table('tb_pegawai');
-			$crud->set_subject('Data Pegawai');
-			$crud->display_as('id_jabatan','Jabatan')->display_as('id_desa','Desa');
-			$crud->set_relation('id_jabatan','tb_jabatan','nama_jabatan');
-			$crud->set_relation('id_desa','tb_desa','{nama_desa}, {nama_kecamatan}');
-			$crud->columns(array('NIP','Nama','id_desa','id_jabatan','Tempat_lahir','Tanggal_lahir','Telepon','Alamat'));
-			$crud->set_field_upload('Foto','assets/foto/');
-			$crud->unset_add();
-			$crud->unset_edit();
-			$crud->unset_delete();
-			$output = $crud->render();
-			$obdes = $this->M_dtdesa->get_nmdes();
-      		$data['data_namdes'] = $obdes;
-      		$obpeg = $this->M_dtdesa->get_nmpeg();
-      		$data['data_nampeg'] = $obpeg;
-			$this->load->view('V_data',$output);
-		}
-		else
+		if ($this->session->userdata('level')=='1')
 		{
 			$crud = new grocery_CRUD();
 			$this->load->model('M_dtdesa');
@@ -56,8 +35,34 @@ class C_data extends CI_Controller {
       		$data['data_namdes'] = $obdes;
       		$obpeg = $this->M_dtdesa->get_nmpeg();
       		$data['data_nampeg'] = $obpeg;
-	    	$this->load->view('template/topbar', $data);
+	    	$this->load->view('admire/topbar', $data);
 			$this->load->view('V_data',$output);
 		}
+		elseif ($this->session->userdata('level')=='0')
+		{
+			$crud = new grocery_CRUD();
+			$crud->set_language('indonesian');
+			$crud->set_table('tb_pegawai');
+			$crud->set_subject('Data Pegawai');
+			$crud->display_as('id_jabatan','Jabatan')->display_as('id_desa','Desa');
+			$crud->set_relation('id_jabatan','tb_jabatan','nama_jabatan');
+			$crud->set_relation('id_desa','tb_desa','{nama_desa}, {nama_kecamatan}');
+			$crud->columns(array('NIP','Nama','id_desa','id_jabatan','Tempat_lahir','Tanggal_lahir','Telepon','Alamat'));
+			$crud->set_field_upload('Foto','assets/foto/');
+			$crud->unset_add();
+			$crud->unset_edit();
+			$crud->unset_delete();
+			$output = $crud->render();
+			$obdes = $this->M_dtdesa->get_nmdes();
+      		$data['data_namdes'] = $obdes;
+      		$obpeg = $this->M_dtdesa->get_nmpeg();
+      		$data['data_nampeg'] = $obpeg;
+	    	$this->load->view('admire/topbar', $data);
+			$this->load->view('V_data',$output);
+		}
+    	else
+    	{
+      		redirect('C_login');
+    	}
 	}
 }

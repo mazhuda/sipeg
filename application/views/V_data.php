@@ -1,56 +1,48 @@
 <?php 
-$this->load->view('template/head');
-//$this->load->view('template/flexigrid')
+$this->load->view('admire/head');
 ?>
 <!--tambahkan custom css disini-->
 
 <?php 
 foreach($css_files as $file): ?>
-	<link type="text/css" rel="stylesheet" href="<?php echo $file; ?>" />
+    <link type="text/css" rel="stylesheet" href="<?php echo $file; ?>" />
 <?php endforeach; ?>
 
 <?php
-$this->load->view('template/sidebar');
+//$this->load->view('admire/topbar');
+$this->load->view('admire/sidebar');
 ?>
-<!-- Content Header (Page header) -->
-<section class="content-header">
-    <h1>
-        Data Aparatur Desa
-    </h1>
-</section>
+<!--tambahkan custom css disini-->
 
 <!-- Main content -->
-<section class="content">
-
-    <!-- Default box -->
-    <div class="box">
-        <div class="box-body">
-            <?php echo $output; ?>
-        </div><!-- /.box-body -->
-    </div><!-- /.box -->
-
-</section><!-- /.content -->
-
-</div><!-- /.content-wrapper -->
-
-</div><!-- ./wrapper -->
-
-<!-- jQuery 2.1.3 -->
-<script src="<?php echo base_url('assets/AdminLTE-2.0.5/plugins/jQuery/jQuery-2.1.3.min.js') ?>"></script>
-<!-- Bootstrap 3.3.2 JS -->
-<script src="<?php echo base_url('assets/AdminLTE-2.0.5/bootstrap/js/bootstrap.min.js') ?>" type="text/javascript"></script>
-<!-- SlimScroll -->
-<script src="<?php echo base_url('assets/AdminLTE-2.0.5/plugins/slimScroll/jquery.slimScroll.min.js') ?>" type="text/javascript"></script>
-<!-- FastClick -->
-<script src='<?php echo base_url('assets/AdminLTE-2.0.5/plugins/fastclick/fastclick.min.js') ?>'></script>
+        <div id="content" class="bg-container">
+            <div class="outer">
+                <div class="inner bg-container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-block">
+                                    <p></p>
+                                    <?php echo $output; ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.inner -->
+            </div>
+            <!-- /.outer -->
+        </div>
 
     <?php foreach($js_files as $file): ?>
         <script src="<?php echo $file; ?>"></script>
     <?php endforeach; ?>
-    
-<!-- AdminLTE App -->
-<script src="<?php echo base_url('assets/AdminLTE-2.0.5/dist/js/app.min.js') ?>" type="text/javascript"></script>
+
+<?php 
+$this->load->view('admire/js');
+?>
+<!--tambahkan custom js disini-->
 
 <?php
-$this->load->view('template/foot');
+$this->load->view('admire/foot');
 ?>

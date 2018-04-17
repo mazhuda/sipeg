@@ -28,7 +28,7 @@ class C_user extends CI_Controller {
  			$crud->callback_before_insert(array($this,'encrypt_password'));
  			$crud->callback_before_update(array($this,'encrypt_password'));
   	 		//$crud->callback_edit_field('password',array($this,'encrypt_password'));
-  	 		$crud->set_rules('NIP','NIP','is_unique[tb_user.NIP]');
+  	 		//$crud->set_rules('NIP','NIP','is_unique[tb_user.NIP]');
  			$crud->unset_clone();
 		    $output = $crud->render();
 		    $obdes = $this->M_dtdesa->get_nmdes();
