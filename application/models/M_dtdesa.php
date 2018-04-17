@@ -55,8 +55,9 @@ class M_dtdesa extends CI_Model {
     }
 
     public function get_nip() {
-        $this->db->select('id_pegawai, id_jabatan, NIP');
+        $this->db->select('id_pegawai, id_jabatan, NIP','id_desa');
         $this->db->where('id_jabatan','4');
+        $this->db->order_by('id_desa', 'asc');
         $query = $this->db->get('tb_pegawai');
         if ($query->num_rows() !== 0)
         {

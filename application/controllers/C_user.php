@@ -12,7 +12,7 @@ class C_user extends CI_Controller {
 	}
 
 	//crud manajemen user
-	public function index() {
+	public function index($operation = null) {
 		if($this->session->userdata('level')=='0')
 		{
 		    $crud = new grocery_CRUD();
@@ -30,7 +30,17 @@ class C_user extends CI_Controller {
  			$crud->callback_before_insert(array($this,'encrypt_password'));
  			$crud->callback_before_update(array($this,'encrypt_password'));
   	 		//$crud->callback_edit_field('password',array($this,'encrypt_password'));
-  	 		$crud->set_rules('NIP','NIP','callback_NIP_check');
+  	 		//$crud->set_rules('NIP','NIP','callback_NIP_check');
+  	 		//$this->grocery_crud->
+			if( $operation == 'insert_validation' || $operation == 'insert')
+			{
+				$this->grocery_crud->set_rules('NIP', 'NIP','is_unique[tb_user.NIP]');
+			}
+			else
+			{
+
+			}
+			//$this->grocery_crud->
  			$crud->unset_clone();
 		    $output = $crud->render();
 		    $obdes = $this->M_dtdesa->get_nmdes();
