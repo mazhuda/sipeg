@@ -38,6 +38,7 @@ class M_dtdesa extends CI_Model {
         return $data_tds;
     }
 
+    //fungsi untuk mengambil nama desa sesuai dengan id yang sedang login ke sistem
     public function get_nmdes()
     {
         $this->db->select('nama_desa, nama_kecamatan');
@@ -46,6 +47,7 @@ class M_dtdesa extends CI_Model {
         return $this->db->get()->row();
     }
 
+    //fungsi untuk mengambil nama pegawai sesuai NIP yang sedang login ke sistem
     public function get_nmpeg()
     {
         $this->db->select('nama');
@@ -54,8 +56,10 @@ class M_dtdesa extends CI_Model {
         return $this->db->get()->row();
     }
 
+
+    //mengambil data nip dengan id_jabatan '4' untuk ditampilkan ke dropdown manajemen user
     public function get_nip() {
-        $this->db->select('id_pegawai, id_jabatan, NIP','id_desa');
+        $this->db->select('id_pegawai, id_jabatan, NIP, id_desa');
         $this->db->where('id_jabatan','4');
         $this->db->order_by('id_desa', 'asc');
         $query = $this->db->get('tb_pegawai');
@@ -70,4 +74,5 @@ class M_dtdesa extends CI_Model {
         $query->free_result();
         return $data_nip;
     }
+
 }

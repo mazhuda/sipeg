@@ -29,16 +29,7 @@ class C_user extends CI_Controller {
 		    $crud->set_subject('Data User');
  			$crud->callback_before_insert(array($this,'encrypt_password'));
  			$crud->callback_before_update(array($this,'encrypt_password'));
-  	 		//$crud->callback_edit_field('password',array($this,'encrypt_password'));
-  	 		//$crud->set_rules('NIP','NIP','callback_NIP_check');
-  	 		//$this->grocery_crud->
-			if( $operation == 'insert_validation' || $operation == 'insert') {
-				$this->grocery_crud->set_rules('NIP', 'NIP','is_unique[tb_user.NIP]');
-			}
-			else {
-
-			}
-			//$this->grocery_crud->
+ 			$crud->set_rules('NIP', 'NIP','is_unique[tb_user.NIP]');
  			$crud->unset_clone();
 		    $output = $crud->render();
 		    $obdes = $this->M_dtdesa->get_nmdes();
@@ -50,11 +41,6 @@ class C_user extends CI_Controller {
 		}
 		else {
 		 	redirect('C_beranda');
-      // 		$obdes = $this->M_dtdesa->get_nmdes();
-      // 		$data['data_namdes'] = $obdes;
-      // 		$obpeg = $this->M_dtdesa->get_nmpeg();
-      // 		$data['data_nampeg'] = $obpeg;
-	    	// $this->load->view('template/topbar', $data);
 		}
 
 
@@ -68,40 +54,5 @@ class C_user extends CI_Controller {
 		return $post_array;
 	  
 	}
-
-// 	function encrypt_password_callback($post_array, $primary_key = null)
-// 	{
-//  			$this->load->library('encrypt');
-//   			$key = 'super-secret-key';
-//  			$post_array['password'] = $this->encrypt->encode($post_array['password'], $key);
-//   				return $post_array;
-// 	}
-
-// 	function decrypt_password_callback($value)
-// 	{
-//  			$this->load->library('encrypt');
-//   			$key = 'super-secret-key';
-//   			$decrypted_password = $this->encrypt->decode($value, $key);
-//  		 	return "<input type='password' name='password' value='$decrypted_password' />";
-// 	}
-// 	function prepend_callback($post_array) {
-// 			$post_array['id_user'] =  '001' . $post_array['id_user'];
-//  			return $post_array;
-// } 
-	
-  
-	// function usuarios_management()
-	// {
-	// 		$crud = new grocery_CRUD();
-	// 		$crud->set_table('tb_user');
-	// 		$crud->columns('NIP','username','password','level','id_desa');
-	// 		$crud->set_subject('tamba user');
-		  
-	// 		$crud->callback_before_insert(array($this,'encrypt_password'));
-	  
-	// 		$output = $crud->render();
-		  
-	// 		$this->_main_output($output);
-	// }
 
 }
